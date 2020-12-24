@@ -1,0 +1,47 @@
+# ---------------------
+# INITIALIZE SIMULATION
+# --------------------- 
+units metal 
+dimension 3
+boundary p p p
+atom_style 	atomic
+atom_modify map array
+region R0 	block 0 20 0 20 0 200 units box 
+
+# ---------------------
+# CREATE ATOMS 
+# ---------------------
+create_box 1 R0
+mass   1 10.0		
+create_atoms 1 single  8 8 100 units box
+create_atoms 1 single  10 10 102 units box
+create_atoms 1 single  10 10 107 units box
+
+# ---------------------
+# PAIR STYLES
+# ---------------------
+pair_style  lj/cut 10 
+pair_coeff  1 1  	0	2.5  	
+
+# -------------------- 
+# FIXES 
+# -------------------- 
+variable TSTART equal 45
+variable TPERIOD equal 0.1
+variable BETA equal 1e-12
+
+compute C1 all property/atom id
+compute C2 all property/atom z
+compute C3 all reduce max c_C1 c_C2 replace 1 2
+
+variable zID equal c_C3[1] 
+
+timestep 0.001
+fix BOOST all addboost all v_zID LJ 0.6 3.0 0.0 10.0
+variable BOOSTV equal f_BOOST
+fix NVT all nvt tempExp ${TSTART} ${TPERIOD} ${BETA} v_BOOSTV 1
+variable TCURRENT equal f_NVT
+
+fix PRINT all print 1 "${BOOSTV} ${TCURRENT}" file outputBOOST.dat screen no
+
+run 100
