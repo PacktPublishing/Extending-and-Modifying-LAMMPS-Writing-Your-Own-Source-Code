@@ -1,0 +1,49 @@
+# ---------------------
+# INITIALISE SIMULATION 
+# ---------------------
+units metal 
+dimension 2
+boundary p p p
+atom_style 		atomic
+atom_modify map array
+
+# ---------------------
+# DEFINE REGIONS 
+# ---------------------
+region r0 	block 0 20 0 20 0 20 units box 
+
+# ---------------------
+# CREATE ATOMS 
+# ---------------------
+create_box 1 r0
+mass   1 10.0		
+create_atoms 1 single  15 10 0 units box
+group G1 id 1
+
+# ---------------------
+# PAIR STYLES
+# ---------------------
+pair_style  lj/cut 1.0 
+pair_coeff  1 1	0.0	1.0  	
+
+# -------------------- 
+# FIXES 
+# -------------------- 
+variable x1 equal x[1]
+variable fx equal fx[1]
+variable y1 equal y[1]
+variable fy equal fy[1]
+
+variable X0 equal 10
+variable Y0 equal 10
+variable KX equal 0.5
+variable KY equal 0.05
+
+variable E0 atom id[1]
+
+velocity G1 set 0 100 0
+fix ADDFORCEXY 	G1 addforceXY v_X0 v_Y0 0 v_KX v_KY energy v_E0
+fix NVE 		G1 nve
+fix PRINT_PE all print 1 "${x1} ${y1} ${fx} ${fy}" file outputADDFORCEXY7.dat screen no
+
+run 100

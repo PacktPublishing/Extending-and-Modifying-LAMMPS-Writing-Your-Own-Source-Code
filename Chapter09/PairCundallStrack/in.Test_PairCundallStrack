@@ -1,0 +1,43 @@
+# --------------------------
+# INITIALISE SIMULATION 
+# --------------------------
+clear
+units		metal
+atom_style	sphere
+dimension	2
+boundary 	p p p
+comm_modify vel yes
+timestep 0.00001
+
+# ---------------------
+# DEFINE REGIONS 
+# ---------------------
+region r0 	block 0 20 0 20 0 20 units box 
+
+# ---------------------
+# CREATE ATOMS 
+# ---------------------
+create_box 1 r0
+create_atoms 1 single  10 10 0 units box
+group G1 id 1
+create_atoms 1 single  11 10 0 units box
+group G2 id 2
+set	group all mass 1
+set	group all diameter 1
+
+# ---------------------
+# PAIR STYLES
+# ---------------------
+pair_style	CundallStrack 10 20 0.1 0.01 0.1 1
+pair_coeff	1 1
+
+# -------------------- 
+# FIXES 
+# -------------------- 
+set group G1 omega 0 0 100
+fix FREEZE all setforce 0 0 0 
+fix NVE G1 nve/sphere disc
+
+dump D0 all custom 10 dumpCUNDALLSTRACK.dat id x omegaz
+
+run 1000
