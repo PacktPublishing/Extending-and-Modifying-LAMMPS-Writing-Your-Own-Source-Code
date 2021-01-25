@@ -7,7 +7,7 @@ This is the code repository for [Extending and Modifying LAMMPS Writing Your Own
 **A pragmatic guide to extending LAMMPS as per custom simulation requirements**
 
 ## What is this book about?
-LAMMPS is one of the most widely used tools for running simulations for research in molecular dynamics. While the tool itself is fairly easy to use, more often than not youll need to customize it to meet your specific simulation requirements. Extending and Modifying LAMMPS bridges this learning gap and helps you achieve this by writing custom code to add new features to LAMMPS source code. Written by ardent supporters of LAMMPS, this practical guide will enable you to extend the capabilities of LAMMPS with the help of step-by-step explanations of essential concepts, practical examples, and self-assessment questions. 
+LAMMPS is one of the most widely used tools for running simulations for research in molecular dynamics. While the tool itself is fairly easy to use, more often than not you'll need to customize it to meet your specific simulation requirements. Extending and Modifying LAMMPS bridges this learning gap and helps you achieve this by writing custom code to add new features to LAMMPS source code. Written by ardent supporters of LAMMPS, this practical guide will enable you to extend the capabilities of LAMMPS with the help of step-by-step explanations of essential concepts, practical examples, and self-assessment questions. 
 
 This book covers the following exciting features:
 * Identify how LAMMPS input script commands are parsed within the source code
