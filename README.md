@@ -57,3 +57,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 **Jichen Li**
 (graduated from Qingdao University of Science and Technology) is now studying for his master's degree at the University of Science and Technology of China. He used LAMMPS to conduct many molecular simulations to explore the relationship between polymer microstructure and macro mechanical and rheological properties. He developed several modeling and post-processing frameworks for LAMMPS and had a certain understanding of its program architecture. He dedicated to the community construction and wrote many columns and tutorials for LAMMPS starters. At present, he is working on the trans-scale simulation and the combination of deep learning and simulation.
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781800562264">https://packt.link/free-ebook/9781800562264 </a> </p>
